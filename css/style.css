@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.left-head {
+  display: flex;
+  align-items: center;
+}
+
+.right-head {
+}
+
+.my-head {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+}
+
+.my-main {
+  height: calc(100vh - 100px - 50px);
+  background-color: rgb(116 255 206);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-start {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+footer {
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
