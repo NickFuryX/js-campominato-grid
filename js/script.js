@@ -1,28 +1,37 @@
 let button = document.getElementById("playButton");
-let difficolta = document.getElementById("difficolta").value;
-
 button.addEventListener("click", gridGenerate);
 
 function gridGenerate() {
-    console.log(difficolta)
+  let difficolta = document.getElementById("difficolta").value;
   let main = document.getElementById("myMain");
+  main.innerHTML = ""; //(serve a pulire l'html)
+
   let bigSquare = document.createElement("div");
   bigSquare.classList.add("quadrato");
-  main.append(bigSquare);
 
   if (difficolta === "facile") {
     for (let i = 1; i < 101; i++) {
+      main.appendChild(bigSquare);
       let littleSquare = document.createElement("div");
-      littleSquare.classList.add("mini-quadrato");
-      littleSquare.innerHTML = `${i}`
+      littleSquare.classList.add("mini-quadrato-10x10");
+      littleSquare.innerHTML = `${i}`;
       bigSquare.append(littleSquare);
     }
-  } else if (difficolta === "media"){
-    console.log('medio')
-
-
-  } else{
-    console.log('difficile')
-
+  } else if (difficolta === "media") {
+    for (let i = 1; i < 82; i++) {
+      main.append(bigSquare);
+      let littleSquare = document.createElement("div");
+      littleSquare.classList.add("mini-quadrato-9x9");
+      littleSquare.innerHTML = `${i}`;
+      bigSquare.append(littleSquare);
+    }
+  } else {
+    for (let i = 1; i < 50; i++) {
+      main.append(bigSquare);
+      let littleSquare = document.createElement("div");
+      littleSquare.classList.add("mini-quadrato-7x7");
+      littleSquare.innerHTML = `${i}`;
+      bigSquare.append(littleSquare);
+    }
   }
 }

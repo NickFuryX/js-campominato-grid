@@ -39,7 +39,7 @@ footer {
   align-items: center;
 }
 
-.quadrato{
+.quadrato {
   height: 500px;
   width: 500px;
   border: 1.5px solid black;
@@ -47,14 +47,30 @@ footer {
   flex-wrap: wrap;
 }
 
-.mini-quadrato{
-  width: 10%;
-  height: 10%;
+.mini-quadrato-10x10 {
+  width: calc(100% / 10);
+  height: calc(100% / 10);
   background-color: aqua;
   border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  
+}
+.mini-quadrato-9x9 {
+  width: calc(100% / 9);
+  height: calc(100% / 9);
+  background-color: aqua;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mini-quadrato-7x7 {
+  width: calc(100% / 7);
+  height: calc(100% / 7);
+  background-color: aqua;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
