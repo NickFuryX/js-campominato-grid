@@ -19,7 +19,7 @@
   height: 100px;
 }
 
-.my-main {
+.myMain {
   height: calc(100vh - 100px - 50px);
   background-color: rgb(116 255 206);
   display: flex;
@@ -37,4 +37,24 @@ footer {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.quadrato{
+  height: 500px;
+  width: 500px;
+  border: 1.5px solid black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.mini-quadrato{
+  width: 10%;
+  height: 10%;
+  background-color: aqua;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  
 }
