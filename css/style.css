@@ -9,8 +9,7 @@
   align-items: center;
 }
 
-.right-head {
-}
+
 
 .my-head {
   display: flex;
@@ -55,6 +54,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .mini-quadrato-9x9 {
   width: calc(100% / 9);
@@ -64,6 +64,8 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+
 }
 .mini-quadrato-7x7 {
   width: calc(100% / 7);
@@ -73,4 +75,10 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+
+}
+
+.no-pointer{
+  cursor: default;
 }
