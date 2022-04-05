@@ -3,11 +3,13 @@ button.addEventListener("click", gridGenerate);
 button.addEventListener("click", generateBomb);
 let numQuadrati;
 let main = document.getElementById("myMain");
+let bombArray = [];
 
 function gridGenerate() {
+  gameRedFlad = false;
   let difficolta = document.getElementById("difficolta").value;
   main.innerHTML = ""; //(serve a pulire l'html)
-
+  generateBomb;
   let bigSquare = document.createElement("div");
   bigSquare.classList.add("quadrato");
 
@@ -42,12 +44,11 @@ function gridGenerate() {
 }
 
 let attempts = 0;
-let bombArray = [];
 
 function generateBomb() {
+  bombArray = [];
   const BOMB_NUMBER = 16;
-  let bombArray = [];
-  let max_attempt;
+  let max_attempt = 0;
   let difficolta = document.getElementById("difficolta").value;
   if (difficolta === "facile") {
     numQuadrati = 100;
@@ -65,29 +66,44 @@ function generateBomb() {
   }
   console.log(bombArray);
 }
-function gameFunction() {
+
+function gameFunction(littleSquare) {
+  console.log(littleSquare);
+
   let selectedNumber = parseInt(this.innerText);
   attempts++;
   console.log(attempts);
+
   if (bombArray.includes(selectedNumber)) {
     this.style.backgroundColor = "red";
-    gameOver;
+    gameRedFlad = true;
+    gameOver();
   } else {
     this.style.backgroundColor = "#6495ed";
     // gameWin;
   }
   this.classList.add("no-pointer");
-  this.removeEventListener("click", gameFunction);
+
+  console.log(gameRedFlad);
+  
+
 }
 
-function gameOver() {
+function gameOver(littleSquare) {
   let loseMessage = document.createElement("div");
   loseMessage.classList.add("provagameover");
   loseMessage.innerHTML = `Hai perso in ${attempts} tentativi`;
   main.append(loseMessage);
-  button.removeEventListener("click", gridGenerate);
-  button.removeEventListener("click", generateBomb);
+  attempts = 0;
 }
+
+// function blockGame() {
+//   if (gameRedFlad === true) {
+//     littleSquare.removeEventListener("click",);
+//   } else {
+//     console.log("continua a giocare");
+//   }
+// }
 
 // Utility
 function getRandomInt(min, max) {
