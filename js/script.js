@@ -6,7 +6,6 @@ let main = document.getElementById("myMain");
 let bombArray = [];
 
 function gridGenerate() {
-  gameRedFlad = false;
   let difficolta = document.getElementById("difficolta").value;
   main.innerHTML = ""; //(serve a pulire l'html)
   generateBomb;
@@ -18,6 +17,7 @@ function gridGenerate() {
       main.append(bigSquare);
       let littleSquare = document.createElement("div");
       littleSquare.classList.add("mini-quadrato-10x10");
+      littleSquare.classList.add("mini-quadrato");
       littleSquare.innerHTML = `${i}`;
       bigSquare.append(littleSquare);
       littleSquare.addEventListener("click", gameFunction);
@@ -27,6 +27,7 @@ function gridGenerate() {
       main.append(bigSquare);
       let littleSquare = document.createElement("div");
       littleSquare.classList.add("mini-quadrato-9x9");
+      littleSquare.classList.add("mini-quadrato");
       littleSquare.innerHTML = `${i}`;
       bigSquare.append(littleSquare);
       littleSquare.addEventListener("click", gameFunction);
@@ -36,6 +37,7 @@ function gridGenerate() {
       main.append(bigSquare);
       let littleSquare = document.createElement("div");
       littleSquare.classList.add("mini-quadrato-7x7");
+      littleSquare.classList.add("mini-quadrato");
       littleSquare.innerHTML = `${i}`;
       bigSquare.append(littleSquare);
       littleSquare.addEventListener("click", gameFunction);
@@ -47,7 +49,7 @@ let attempts = 0;
 
 function generateBomb() {
   bombArray = [];
-  const BOMB_NUMBER = 16;
+  const BOMB_NUMBER = 1;
   let max_attempt = 0;
   let difficolta = document.getElementById("difficolta").value;
   if (difficolta === "facile") {
@@ -67,28 +69,42 @@ function generateBomb() {
   console.log(bombArray);
 }
 
-function gameFunction(littleSquare) {
+function gameFunction() {
   let selectedNumber = parseInt(this.innerText);
   attempts++;
   if (bombArray.includes(selectedNumber)) {
-    // this.style.backgroundColor = "red";
     this.style.backgroundImage = "url(../img/bomb.jpg)";
-    this.innerText = ''
-    let loseMessage = document.createElement("div");
-    loseMessage.classList.add("provagameover");
-    loseMessage.innerHTML = `Hai perso in ${attempts} tentativi. Premi play per rigiocare.`;
-    main.append(loseMessage);
-    attempts = 0;
+    this.innerText = "";
     gameOver();
   } else {
     this.style.backgroundColor = "#6495ed";
-    // gameWin;
+    console.log(attempts)
+    if (attempts === numQuadrati - 1) {
+      gameWin();
+    }
   }
+  this.removeEventListener("click", gameFunction);
   this.classList.add("no-pointer");
 }
 
 function gameOver() {
-  let allCells = document.getElementsByClassName("mini-quadrato-10x10");
+  let loseMessage = document.createElement("div");
+  loseMessage.innerHTML = `Hai perso in ${attempts} tentativi. Premi play per rigiocare.`;
+  main.append(loseMessage);
+  attempts = 0;
+  let allCells = document.getElementsByClassName("mini-quadrato");
+  for (let i = 0; i < allCells.length; i++) {
+    allCells[i].removeEventListener("click", gameFunction);
+    allCells[i].classList.add("no-pointer");
+  }
+}
+
+function gameWin() {
+  let winMessage = document.createElement("div");
+  winMessage.innerHTML = `Hai vinto. Premi play per rigiocare.`;
+  main.append(winMessage);
+  attempts = 0;
+  let allCells = document.getElementsByClassName("mini-quadrato");
   for (let i = 0; i < allCells.length; i++) {
     allCells[i].removeEventListener("click", gameFunction);
     allCells[i].classList.add("no-pointer");
