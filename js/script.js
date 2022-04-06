@@ -68,42 +68,32 @@ function generateBomb() {
 }
 
 function gameFunction(littleSquare) {
-  console.log(littleSquare);
-
   let selectedNumber = parseInt(this.innerText);
   attempts++;
-  console.log(attempts);
-
   if (bombArray.includes(selectedNumber)) {
-    this.style.backgroundColor = "red";
-    gameRedFlad = true;
+    // this.style.backgroundColor = "red";
+    this.style.backgroundImage = "url(../img/bomb.jpg)";
+    this.innerText = ''
+    let loseMessage = document.createElement("div");
+    loseMessage.classList.add("provagameover");
+    loseMessage.innerHTML = `Hai perso in ${attempts} tentativi. Premi play per rigiocare.`;
+    main.append(loseMessage);
+    attempts = 0;
     gameOver();
   } else {
     this.style.backgroundColor = "#6495ed";
     // gameWin;
   }
   this.classList.add("no-pointer");
-
-  console.log(gameRedFlad);
-  
-
 }
 
-function gameOver(littleSquare) {
-  let loseMessage = document.createElement("div");
-  loseMessage.classList.add("provagameover");
-  loseMessage.innerHTML = `Hai perso in ${attempts} tentativi`;
-  main.append(loseMessage);
-  attempts = 0;
+function gameOver() {
+  let allCells = document.getElementsByClassName("mini-quadrato-10x10");
+  for (let i = 0; i < allCells.length; i++) {
+    allCells[i].removeEventListener("click", gameFunction);
+    allCells[i].classList.add("no-pointer");
+  }
 }
-
-// function blockGame() {
-//   if (gameRedFlad === true) {
-//     littleSquare.removeEventListener("click",);
-//   } else {
-//     console.log("continua a giocare");
-//   }
-// }
 
 // Utility
 function getRandomInt(min, max) {
